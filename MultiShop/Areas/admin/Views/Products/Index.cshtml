@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_Adminlayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="content-wrapper" style="min-height : 624px">
+    <table class="table">
+        <tr>
+            <th>
+               Supplier Name
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitBrief)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Discount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Views)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Supplier.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitBrief)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitPrice)
+        </td>
+        <td>
+            <img src="~/Content/img/products/@item.Image" width="100" height="100" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Discount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Views)
+        </td>
+        <td>
+            <a href="/admin/Products/Edit/@item.Id">Edit</a> |
+            @Ajax.ActionLink("Delete", "Delete", new { @id = item.Id }, new AjaxOptions
+            {
+                Confirm = "Bạn có muốn xoá Products này?",
+                OnComplete = "$('#row_" + @item.Id + "').remove()",
+                HttpMethod = "Delete"
+            })
+        </td>
+    </tr>
+        }
+        <a class="btn btn-primary" href="/admin/Products/Create">Thêm mới</a>
+    </table>
+</div>

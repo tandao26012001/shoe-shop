@@ -1,0 +1,81 @@
+﻿@model Order
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/admin/Views/Shared/_Adminlayout.cshtml";
+}
+<div class="content-wrapper" style="min-height : 624px">
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ReceiverName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ReceiverName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Amount)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Amount)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Status)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Status)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+    </div>

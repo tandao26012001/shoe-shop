@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Product>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List Product</h2>
+
+
+<div class="card-deck">
+    <div class="row">
+        @foreach (var p in Model)
+        {
+        <div class="col-md-4 col-6 rowcart">
+            <div class="nn-product-box">
+                <a href="/chi-tiet/@p.Name.ToAscii().ToLower()_@p.Id">
+                    <img class="img-responsive" src="/Content/img/products/@p.Image" width="150" height="150" />
+                </a>
+                <div class="nn-product-box-descriptions">
+                    <h3 class="nn-product-box-name">
+                        <a href="/chi-tiet/@p.Name.ToAscii().ToLower()_@p.Id" title="@p.Name">@p.Name</a>
+                    </h3>
+                    <div class="nn-product-box-price ">
+                        <a style="color:red">@p.UnitPrice)</a> $
+                    </div>
+                    <div class="nn-product-box-actions">
+                        <button type="button" title="Add to Cart" class="btn btn-default add-to-cart" data-id="@p.Id">
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(function () {
+            $(".add-to-cart").click(function () {
+                pid = $(this).attr("data-id");
+                $.ajax({
+                    url: "/Cart/Add",
+                    data: { id: pid },
+                    success: function (response) {
+                        $("#nn-cart-count").html(response.Count);
+                        $("#nn-cart-total").html(response.Total);
+                    }
+                });
+
+                // hieu ung bay vao gio
+                cssfly = ".fly-effect {background:url(?);background-size:100% 100%;}";
+                src = $("#i" + pid).attr("src");
+                newcssfly = cssfly.replace("?", src);
+                $("#cart-fly").html(newcssfly);
+
+                options = { to: "#nn-cart-image", className: "fly-effect" };
+                $("#i" + pid).effect("transfer", options, 500, function () { });
+            });
+        });
+    </script>
+}

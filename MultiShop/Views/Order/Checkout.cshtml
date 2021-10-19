@@ -1,0 +1,71 @@
+﻿@model Order
+
+@{
+    ViewBag.Title = "Checkout";
+}
+
+<h2>Checkout</h2>
+
+@using (Html.BeginForm("Purchase", "Order"))
+{
+<div class="form-horizontal">
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Customer Name</label>
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.CustomerId, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2"> Receiver Name</label>
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.ReceiverName, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Email</label>
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Address</label>
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Total Amount</label>
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Amount, new { @class = "form-control", @readonly = "true" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Phone</label>
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Description</label>
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Description, new { @class = "form-control", rows = "5" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Purchase" class="btn btn-default" />
+        </div>
+        <div class="col-md-offset-2 col-md-10">
+            <a href="/Cart/Index">Return Card</a>
+        </div>
+    </div>
+</div>
+}

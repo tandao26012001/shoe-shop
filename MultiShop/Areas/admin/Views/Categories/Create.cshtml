@@ -1,0 +1,59 @@
+﻿@model Category
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/admin/Views/Shared/_Adminlayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="content-wrapper" style="min-height : 624px">
+        <div class="form-horizontal">
+            <h4>Import Category</h4>
+            <hr />
+            @Html.ValidationSummary(true)
+            <div class="form-group">
+                @Html.LabelFor(model => model.NameVN, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NameVN)
+                    @Html.ValidationMessageFor(model => model.NameVN)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name)
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Image)
+                    @Html.ValidationMessageFor(model => model.Image)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Icon, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Icon)
+                    @Html.ValidationMessageFor(model => model.Icon)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Category>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_Adminlayout.cshtml";
+}
+
+
+<div class="content-wrapper" style="min-height : 624px">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NameVN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Icon)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameVN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <img src="~/Content/img/categories/@item.Image" width="100" height="100"/>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Icon)
+                </td>
+                <td>
+                    <a href="/admin/Categories/Edit/@item.Id">Edit</a> |
+                    @Ajax.ActionLink("Delete", "Delete", new { @id = item.Id }, new AjaxOptions
+                    {
+                     Confirm = "Bạn có muốn xoá categories này?",
+                     OnComplete = "$('#row_" + @item.Id + "').remove()",
+                     HttpMethod = "Delete"
+                    })
+                </td>
+            </tr>
+        }
+        <br/>
+        <a class="btn btn-primary" href="/Admin/Categories/Create">Thêm mới</a>
+    </table>
+</div>
